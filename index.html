@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Minesweeper</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <style>
+    body {
+      padding-top: 80px;
+      background-color: #e8e8e8;
+    }
+    .shadow {
+      -moz-box-shadow:    0 0 10px #111111;
+      -webkit-box-shadow: 0 0 10px #111111;
+      box-shadow:         0 0 10px #111111;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">Minesweeper</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+    <center>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="well shadow">
+            <canvas id="game"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+            <div class="well shadow">
+              <button id="reset" class="btn btn-danger">Reset</button>
+              <span class="text text-success"><h3>Time:</h3><h3 id="timer">0</h3></span>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="well shadow">
+              <span class="text text-primary"><h3>Difficulty:</h3></span>
+              <select id="difficulty">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+                <option>Insane</option>
+              </select>
+            </div>
+          </div>
+      </div>
+
+    </center>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
