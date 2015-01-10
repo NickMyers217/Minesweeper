@@ -20,7 +20,7 @@ var Game = function(canvas, cellSize, difficulty) {
 
     this.time = 0;
     this.cellStack = [];
-}
+};
 
 Game.prototype.setBoardDifficulty = function(rows, cols, bombCount) {
     this.rows = rows;
@@ -28,7 +28,7 @@ Game.prototype.setBoardDifficulty = function(rows, cols, bombCount) {
     this.bombCount = bombCount;
     this.canvas.width = cols * this.cellSize;
     this.canvas.height = rows * this.cellSize;
-}
+};
 
 Game.prototype.getClickCoords = function(event) {
     var top = parseFloat($("#game").offset().top);
@@ -39,18 +39,18 @@ Game.prototype.getClickCoords = function(event) {
     var y = Math.floor(pixelY / this.cellSize);
 
     return { x: x, y: y };
-}
+};
 
 Game.prototype.getCell = function(x, y) {
     for(var i = 0; i < this.cellStack.length; i++) {
         if(this.cellStack[i].x == x && this.cellStack[i].y == y)
             return this.cellStack[i];
     }
-}
+};
 
 Game.prototype.clearBoard = function() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-}
+};
 
 Game.prototype.generateBombs = function() {
     var c = this.cellStack;
@@ -64,7 +64,7 @@ Game.prototype.generateBombs = function() {
             i++;
         }
     }
-}
+};
 
 Game.prototype.generateNums = function() {
     var c = this.cellStack;
@@ -81,7 +81,7 @@ Game.prototype.generateNums = function() {
                 cell.num++;
         }
     }
-}
+};
 
 Game.prototype.massReveal = function(cell) {
     var neighbors = cell.neighbors;
@@ -96,7 +96,7 @@ Game.prototype.massReveal = function(cell) {
                 this.massReveal(neighbor);
         }
     }
-}
+};
 
 Game.prototype.initBoard = function() {
     this.clearBoard();
@@ -110,7 +110,7 @@ Game.prototype.initBoard = function() {
 
     this.generateBombs();
     this.generateNums();
-}
+};
 
 Game.prototype.drawBoard = function() {
     this.clearBoard();
@@ -118,7 +118,7 @@ Game.prototype.drawBoard = function() {
     for(var i = 0; i < this.cellStack.length; i++) {
         this.cellStack[i].draw(this.ctx);
     }
-}
+};
 
 Game.prototype.clickCell = function(event) {
     var coords = this.getClickCoords(event);
@@ -132,7 +132,7 @@ Game.prototype.clickCell = function(event) {
                 this.massReveal(cell);
         }
     }
-}
+};
 
 Game.prototype.flagCell = function(event) {
     var coords = this.getClickCoords(event);
@@ -145,7 +145,7 @@ Game.prototype.flagCell = function(event) {
             cell.flagged = false;
         }
     }
-}
+};
 
 Game.prototype.checkLoss = function() {
     var c = this.cellStack;
@@ -156,7 +156,7 @@ Game.prototype.checkLoss = function() {
     }
 
     return false;
-}
+};
 
 Game.prototype.checkWin = function() {
     var c = this.cellStack;
@@ -172,7 +172,7 @@ Game.prototype.checkWin = function() {
         return true;
 
     return false;
-}
+};
 
 Game.prototype.reset = function(message) {
     for(var i = 0; i < this.cellStack.length; i++) {
@@ -183,7 +183,7 @@ Game.prototype.reset = function(message) {
     this.drawBoard();
     alert(message);
     this.quickReset(); 
-}
+};
 
 Game.prototype.quickReset = function() {
     var difficulty = $("#difficulty").val();
@@ -209,7 +209,7 @@ Game.prototype.quickReset = function() {
 
     this.initBoard();
     this.drawBoard();
-}
+};
 
 
 var Cell = function(cellSize, x, y) {
@@ -222,7 +222,7 @@ var Cell = function(cellSize, x, y) {
     this.num = 0;
 
     this.neighbors = [];
-}
+};
 
 Cell.prototype.generateNeighbors = function(rows, cols) {
     var xCoords = [-1, 0, 1, -1, 1, -1, 0, 1];
@@ -240,7 +240,7 @@ Cell.prototype.generateNeighbors = function(rows, cols) {
             if(neighbor.y >= 0 && neighbor.y < rows)
                 this.neighbors.push(neighbor);
     }
-}
+};
 
 Cell.prototype.draw = function(ctx) {
     var c = this.cellSize;
@@ -274,7 +274,7 @@ Cell.prototype.draw = function(ctx) {
         ctx.font = "20px Times Roman";
         ctx.fillText(this.num, (this.x * c) + (c/2), (this.y * c) + (c/2));
     }
-}
+};
 
 
 $(function() {
@@ -317,7 +317,7 @@ $(function() {
 
     $("#reset").click(function() {
         game.quickReset();
-    })
+    });
 });
 
 
